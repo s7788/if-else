@@ -12,8 +12,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('.')); // Serve static files (HTML, CSS, JS)
 
-// Initialize Gemini AI
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+// Initialize Gemini AI (only if API key is available)
+const genAI = process.env.GEMINI_API_KEY ? new GoogleGenerativeAI(process.env.GEMINI_API_KEY) : null;
 
 // In-memory storage for game sessions
 const gameSessions = new Map();
@@ -158,14 +158,14 @@ app.post('/api/game/choice', async (req, res) => {
 // Generate AI response using Gemini
 async function generateAIResponse(scenario, session) {
     // Check if API key is configured
-    if (!process.env.GEMINI_API_KEY) {
+    if (!process.env.GEMINI_API_KEY || !genAI) {
         console.warn('GEMINI_API_KEY not configured, using fallback response');
         return generateFallbackResponse(scenario, session);
     }
     
     try {
         const model = genAI.getGenerativeModel({ 
-            model: "gemini-pro",
+            model: "gemini-1.5-flash", // Updated to use latest model
             generationConfig: {
                 temperature: 0.9,
                 topK: 40,
@@ -178,15 +178,19 @@ async function generateAIResponse(scenario, session) {
         const result = await model.generateContent(prompt);
         const responseText = result.response.text();
         
-        // Parse JSON response
-        const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-        if (jsonMatch) {
-            const parsed = JSON.parse(jsonMatch[0]);
-            return {
-                text: parsed.text || parsed.story || '',
-                choices: parsed.choices || [],
-                isEnd: !parsed.choices || parsed.choices.length === 0
-            };
+        // Parse JSON response with error handling
+        try {
+            const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+            if (jsonMatch) {
+                const parsed = JSON.parse(jsonMatch[0]);
+                return {
+                    text: parsed.text || parsed.story || '',
+                    choices: parsed.choices || [],
+                    isEnd: !parsed.choices || parsed.choices.length === 0
+                };
+            }
+        } catch (parseError) {
+            console.error('JSON parsing error:', parseError);
         }
         
         // Fallback if JSON parsing fails
