@@ -9,54 +9,72 @@
 ## 功能特色
 
 - 🌌 三個精心設計的歷史分歧點場景
-- 📚 亞歷山大圖書館永存
-- ⚙️ 工業革命的另一條路
-- ⚡ 羅馬帝國的電力時代
+  - 📚 亞歷山大圖書館永存
+  - ⚙️ 工業革命的另一條路
+  - ⚡ 羅馬帝國的電力時代
+- 🤖 **整合 Google Gemini AI**，動態生成故事情節
 - 🎮 流暢的互動式遊戲體驗
 - 🎨 美觀的漸層設計和動畫效果
 - 📱 響應式設計，支援各種裝置
 
-## 如何使用
+## 系統需求
 
-### 方法一：直接開啟 HTML 檔案
+- Node.js 14.x 或更高版本
+- Google Gemini API Key（可在 [Google AI Studio](https://makersuite.google.com/app/apikey) 取得）
 
-1. 下載所有檔案到本地資料夾
-2. 雙擊 `index.html` 檔案在瀏覽器中開啟
+## 快速開始
 
-### 方法二：使用本地伺服器
+### 1. 安裝依賴
 
 ```bash
-# 使用 Python 3
-python3 -m http.server 8000
-
-# 或使用 Python 2
-python -m SimpleHTTPServer 8000
-
-# 然後在瀏覽器開啟
-# http://localhost:8000
+npm install
 ```
 
-### 方法三：使用 Node.js
+### 2. 設定環境變數
+
+複製 `.env.example` 為 `.env` 並設定你的 API Key：
 
 ```bash
-# 安裝 http-server
-npm install -g http-server
+cp .env.example .env
+```
 
-# 啟動伺服器
-http-server
+編輯 `.env` 檔案：
 
-# 在瀏覽器開啟顯示的網址
+```
+GEMINI_API_KEY=你的_Gemini_API_Key
+PORT=3000
+```
+
+**注意**：如果沒有設定 API Key，系統會使用備用模式，提供基本的故事繼續功能。
+
+### 3. 啟動應用
+
+```bash
+npm start
+```
+
+然後在瀏覽器開啟 [http://localhost:3000](http://localhost:3000)
+
+## 開發模式
+
+```bash
+npm run dev
 ```
 
 ## 檔案結構
 
 ```
 if-else/
-├── index.html      # 主要 HTML 結構
-├── style.css       # 樣式表
-├── app.js          # JavaScript 應用邏輯
-├── spec.md         # 專案規格說明文件
-└── README.md       # 本說明文件
+├── public/          # 公開靜態文件目錄
+│   ├── index.html   # 主要 HTML 結構
+│   ├── style.css    # 樣式表
+│   └── app.js       # 前端 JavaScript 邏輯
+├── server.js        # 後端 API 伺服器（整合 Gemini AI）
+├── package.json     # Node.js 專案配置
+├── .env.example     # 環境變數範例
+├── .gitignore       # Git 忽略文件配置
+├── spec.md          # 專案規格說明文件
+└── README.md        # 本說明文件
 ```
 
 ## 遊戲玩法
@@ -71,9 +89,17 @@ if-else/
 ## 技術細節
 
 - **前端**：純 HTML5, CSS3, JavaScript (ES6+)
+- **後端**：Node.js + Express
+- **AI 引擎**：Google Gemini API
+- **安全性**：僅提供公開靜態文件，敏感資料受保護
 - **設計**：響應式設計，支援桌面和行動裝置
 - **相容性**：支援所有現代瀏覽器（Chrome, Firefox, Safari, Edge）
-- **無需依賴**：不需要任何外部框架或函式庫
+
+## 已實現功能
+
+- ✅ 整合 Google Gemini AI，動態生成故事情節
+- ✅ 後端 API 伺服器
+- ✅ 會話管理系統
 
 ## 未來發展
 
@@ -81,9 +107,7 @@ if-else/
 
 - V1.1：視覺化時間軸，顯示決策樹
 - V1.2：AI 圖片生成，為每個情節生成配圖
-- V2.0：會員系統、儲存遊戲進度、社群分享功能
-- 整合真實的 AI API（如 Google Gemini 或 OpenAI GPT）
-- 後端 API 伺服器和資料庫整合
+- V2.0：會員系統、儲存遊戲進度、社群分享功能、資料庫整合
 
 ## 授權
 
