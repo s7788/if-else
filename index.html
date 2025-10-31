@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>時空分歧點 - Project Divergence</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🌌 時空分歧點</h1>
+            <p class="subtitle">探索歷史的另一種可能</p>
+        </header>
+
+        <!-- Scenario Selection View -->
+        <div id="scenario-view" class="view active">
+            <h2>選擇你的歷史轉捩點</h2>
+            <div id="scenario-list" class="scenario-list">
+                <!-- Scenarios will be loaded here by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Game Play View -->
+        <div id="game-view" class="view">
+            <div class="game-header">
+                <button id="back-btn" class="back-btn">← 返回劇本選擇</button>
+                <h3 id="scenario-title" class="scenario-title"></h3>
+            </div>
+            
+            <div class="story-container">
+                <div id="story-log" class="story-log">
+                    <!-- Story text will appear here -->
+                </div>
+            </div>
+
+            <div id="choices-container" class="choices-container">
+                <!-- Choice buttons will appear here -->
+            </div>
+
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>思考中...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

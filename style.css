@@ -1,0 +1,259 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", "微軟正黑體", sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    color: white;
+    margin-bottom: 40px;
+    padding: 20px;
+}
+
+.header h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.subtitle {
+    font-size: 1.2em;
+    opacity: 0.95;
+}
+
+/* Views */
+.view {
+    display: none;
+}
+
+.view.active {
+    display: block;
+}
+
+/* Scenario Selection */
+#scenario-view h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8em;
+}
+
+.scenario-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.scenario-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.scenario-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+}
+
+.scenario-card h3 {
+    color: #667eea;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+.scenario-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.scenario-card .emoji {
+    font-size: 2em;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Game View */
+.game-header {
+    background: white;
+    border-radius: 12px 12px 0 0;
+    padding: 20px;
+    margin-bottom: 0;
+}
+
+.back-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s;
+    margin-bottom: 10px;
+}
+
+.back-btn:hover {
+    background: #5568d3;
+}
+
+.scenario-title {
+    color: #667eea;
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+.story-container {
+    background: white;
+    padding: 30px;
+    min-height: 300px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.story-log {
+    line-height: 1.8;
+}
+
+.story-entry {
+    margin-bottom: 25px;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.story-text {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.user-choice {
+    background: #f0f0f0;
+    padding: 12px 18px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    margin: 15px 0;
+    font-style: italic;
+    color: #555;
+}
+
+/* Choices */
+.choices-container {
+    background: white;
+    border-radius: 0 0 12px 12px;
+    padding: 20px 30px 30px 30px;
+}
+
+.choice-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 18px 25px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.05em;
+    text-align: left;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.choice-btn:hover:not(:disabled) {
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.choice-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.choice-btn .choice-id {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+/* Loading */
+.loading {
+    background: white;
+    border-radius: 0 0 12px 12px;
+    padding: 40px;
+    text-align: center;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading p {
+    color: #667eea;
+    font-size: 1.2em;
+}
+
+.end-message {
+    background: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 20px;
+    border: 2px solid #667eea;
+}
+
+.end-message h3 {
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2em;
+    }
+    
+    .scenario-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .story-container {
+        max-height: 400px;
+    }
+}
