@@ -197,7 +197,7 @@ function startGame(scenario) {
 
 // Generate a simple game ID
 function generateGameId() {
-    return 'game-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+    return 'game-' + Date.now() + '-' + Math.random().toString(36).substring(2, 11);
 }
 
 // Display story text
@@ -299,11 +299,12 @@ function displayGameEnd() {
         <div class="end-message">
             <h3>🌟 故事結束</h3>
             <p>你創造了一個獨特的歷史時間線！</p>
-            <button class="choice-btn" onclick="returnToScenarios()">
+            <button class="choice-btn" id="replay-btn">
                 探索其他可能性
             </button>
         </div>
     `;
+    document.getElementById('replay-btn').addEventListener('click', returnToScenarios);
 }
 
 // Return to scenario selection
