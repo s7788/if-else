@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static('.')); // Serve static files (HTML, CSS, JS)
+app.use(express.static('public')); // Serve static files from public directory only
 
 // Initialize Gemini AI (only if API key is available)
 const genAI = process.env.GEMINI_API_KEY ? new GoogleGenerativeAI(process.env.GEMINI_API_KEY) : null;

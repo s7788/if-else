@@ -65,14 +65,16 @@ npm run dev
 
 ```
 if-else/
-├── index.html      # 主要 HTML 結構
-├── style.css       # 樣式表
-├── app.js          # 前端 JavaScript 邏輯
-├── server.js       # 後端 API 伺服器（整合 Gemini AI）
-├── package.json    # Node.js 專案配置
-├── .env.example    # 環境變數範例
-├── spec.md         # 專案規格說明文件
-└── README.md       # 本說明文件
+├── public/          # 公開靜態文件目錄
+│   ├── index.html   # 主要 HTML 結構
+│   ├── style.css    # 樣式表
+│   └── app.js       # 前端 JavaScript 邏輯
+├── server.js        # 後端 API 伺服器（整合 Gemini AI）
+├── package.json     # Node.js 專案配置
+├── .env.example     # 環境變數範例
+├── .gitignore       # Git 忽略文件配置
+├── spec.md          # 專案規格說明文件
+└── README.md        # 本說明文件
 ```
 
 ## 遊戲玩法
@@ -89,6 +91,7 @@ if-else/
 - **前端**：純 HTML5, CSS3, JavaScript (ES6+)
 - **後端**：Node.js + Express
 - **AI 引擎**：Google Gemini API
+- **安全性**：僅提供公開靜態文件，敏感資料受保護
 - **設計**：響應式設計，支援桌面和行動裝置
 - **相容性**：支援所有現代瀏覽器（Chrome, Firefox, Safari, Edge）
 
